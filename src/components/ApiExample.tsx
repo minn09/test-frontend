@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApi } from '../hooks/useApi';
-import { apiService, SurfSpot, DeveloperStats, SurfCodeTip } from '../services/api';
+import { apiService } from '../services/api';
+import type { SurfSpot, DeveloperStats, SurfCodeTip, CurrentConditions } from '../services/api';
 
 export const ApiExample: React.FC = () => {
   const [selectedSpotId, setSelectedSpotId] = useState<number>(1);
@@ -21,7 +22,7 @@ export const ApiExample: React.FC = () => {
     []
   );
 
-  const { data: currentConditions, loading: conditionsLoading, error: conditionsError, refetch: refetchConditions } = useApi<CurrentConditions>(
+  const { data: currentConditions, refetch: refetchConditions } = useApi<CurrentConditions>(
     () => apiService.getCurrentConditions(selectedSpotId.toString()),
     [selectedSpotId]
   );

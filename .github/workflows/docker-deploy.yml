@@ -18,28 +18,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Borrar imagen local previa (si existe)
-        run: |
-          if docker images jonathanhuertascontreras/test-frontend | grep -q jonathanhuertascontreras/test-frontend; then
-            echo "🗑️  Borrando imagen previa..."
-            docker rmi jonathanhuertascontreras/test-frontend
-            echo "✅ Imagen borrada exitosamente"
-          else
-            echo "ℹ️  No se encontró imagen previa para borrar"
-          fi 
-
       - name: Build imagen Docker
         run: |
-          docker build -f Dockerfile.prod -t jonathanhuertascontreras/test-frontend .
-          
+          docker build -f Dockerfile.prod -t jonathanhuertascontreras/test-frontend:latest .
 
       - name: Push imagen a DockerHub
         run: |
-          docker push jonathanhuertascontreras/test-frontend
-
-      - name: Mostrar información de la imagen
-        run: |
-          echo "✅ Imagen subida exitosamente: jonathanhuertascontreras/test-frontend"
-          echo "📦 Para ejecutar localmente:"
-          echo "   docker pull jonathanhuertascontreras/test-frontend"
-          echo "   docker run -p 80:80 jonathanhuertascontreras/test-frontend" 
+          docker push jonathanhuertascontreras/test-frontend:latest 

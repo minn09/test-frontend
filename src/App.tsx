@@ -6,7 +6,7 @@ function App() {
     <div className="app">
       <header className="header">
         <nav className="nav">
-          <div className="logo">🌊 DevSurf!</div>
+          <div className="logo">🌊 DevSurf!!</div>
           <div className="nav-links">
             <a href="#about">Sobre mí</a>
             <a href="#services">Servicios</a>

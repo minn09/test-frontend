@@ -24,12 +24,4 @@ jobs:
 
       - name: Push imagen a DockerHub
         run: |
-          docker push jonathanhuertascontreras/test-frontend:latest
-
-      - name: Docker pull
-        run: |
-          docker pull jonathanhuertascontreras/test-frontend:latest
-
-      - name: Docker compose up
-        run: |
-          docker compose up -d 
+          docker push jonathanhuertascontreras/test-frontend:latest 

@@ -20,11 +20,18 @@ jobs:
 
       - name: Borrar imagen local previa (si existe)
         run: |
-          docker rmi jonathanhuertascontreras/test-frontend || true
+          if docker images jonathanhuertascontreras/test-frontend | grep -q jonathanhuertascontreras/test-frontend; then
+            echo "🗑️  Borrando imagen previa..."
+            docker rmi jonathanhuertascontreras/test-frontend
+            echo "✅ Imagen borrada exitosamente"
+          else
+            echo "ℹ️  No se encontró imagen previa para borrar"
+          fi 
 
       - name: Build imagen Docker
         run: |
           docker build -f Dockerfile.prod -t jonathanhuertascontreras/test-frontend .
+          
 
       - name: Push imagen a DockerHub
         run: |
